@@ -1,6 +1,4 @@
-# log4j-poc
-
-log4j-poc in kubernetes environment
+# log4j-poc in kubernetes environment
 
 
 
