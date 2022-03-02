@@ -1,10 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nc-pod
+  name: nc-pod
+spec:
+  selector:
+    matchLabels:
+      app: nc-pod
+  template:
+    metadata:
+      labels:
+        app: nc-pod
+    spec:
+      containers:
+        - name: nc-pod
+          image: knoxuser/nc-pod
+---
 apiVersion: v1
 kind: Service
 metadata:
   labels:
-    run: nc-pod
+    app: nc-pod
   name: nc-svc
-  namespace: default
 spec:
   ports:
   - name: "4444"
@@ -20,9 +38,7 @@ spec:
     protocol: TCP
     targetPort: 1389
   selector:
-    run: nc-pod
+    app: nc-pod
   type: LoadBalancer
 status:
   loadBalancer: {}
-
-
