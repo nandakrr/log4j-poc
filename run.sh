@@ -14,12 +14,12 @@ fi
 echo
 tput bold setaf 2; echo "Deploying a sample Java microservice on namespace '$ns_val'..."
 echo
-kubectl -n $ns_val apply -f https://raw.githubusercontent.com/accuknox/samples/main/log4j-demo/k8s.yaml
+kubectl -n $ns_val apply -f https://raw.githubusercontent.com/nandakrr/log4j-poc/main/k8s-app-deploy.yaml
 sleep 2
 echo
 tput bold setaf 2; echo "Deploying malicious ldap server on namespace '$ns_val'..."
 echo
-kubectl -n $ns_val apply -f https://raw.githubusercontent.com/accuknox/samples/main/log4j-demo/k8s-ldap.yaml
+kubectl -n $ns_val apply -f https://raw.githubusercontent.com/nandakrr/log4j-poc/main/k8s-ldap-deploy.yaml
 sleep 2
 echo
 while [[ "$(kubectl -n $ns_val get pods -l=app=nc-pod -o jsonpath='{.items[*].status.containerStatuses[0].ready}')" != "true" && "$(kubectl -n $ns_val get pods -l=app=java-ms -o jsonpath='{.items[*].status.containerStatuses[0].ready}')" != "true" ]]; do
